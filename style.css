@@ -1,0 +1,279 @@
+@font-face {
+    font-family: 'Violet Smile';
+    src: url('fonts/Violet\ Smile.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Letters for learners';
+    src: url('fonts/Letters\ for\ Learners.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+body {
+    background: url('images/chris-nguyen-lbmrrNgq2lo-unsplash.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: 'Roboto';
+    font-size: 16px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+/* Header --------------------------------------------------------------------------*/
+header {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-bottom: 20px;
+    flex-grow: 1;
+}
+.header-image {
+    width: 1000px;
+}
+.container-slider {
+    max-width: 1000px;
+    height: 400px;
+    margin: 0px auto;
+    overflow: hidden;
+    display: flex;
+}
+.slider {
+    flex-shrink: 0;
+    width: 100%;
+    animation: slider 17s ease-in-out;
+}
+
+/* 5% par transition = 20%
+reste 80% : divisé par 4 images
+20% par image */
+@keyframes slider {
+    0%,
+    20% {
+        transform: translateX(0);
+    }
+    25%,
+    45% {
+        transform: translateX(-100%);
+    }
+    50%,
+    70% {
+        transform: translateX(-200%);
+    }
+    75%,
+    95% {
+        transform: translateX(-300%);
+    }
+    100% {
+        transform: translateX(-400%);
+    }
+}
+h1 {
+    font-family: 'Violet Smile';
+    font-size: 53px;
+    text-shadow: 9px 9px 2px rgb(179, 179, 179);
+}
+h2 {
+    font-family: 'Letters for Learners';
+    font-size: 37px;
+}
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 15px;
+    justify-content: space-around;
+    padding-left: 0px;
+}
+nav li {
+    list-style: none;
+}
+button {
+    font-size: 18px;
+    padding: 5px 10px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    cursor: pointer;
+    font-family: 'Roboto';
+}
+button:hover {
+    text-decoration: underline;
+}
+.arrow {
+    width: 12px;
+}
+/* À acheter en ce moment -----------------------------------------------------------*/
+section {
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 20px 40px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+.items {
+    display: block;
+}
+.items-style {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.vegetable-container {
+    border: 1px solid black;
+    width: 180px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.853);
+    margin: 10px;
+}
+.vegetable-name {
+    font-family: 'Letters for Learners';
+    font-size: 25px;
+    text-shadow: 2px 2px 2px rgb(173, 173, 173);
+}
+.vegetable-price {
+    font-size: 18px;
+    padding-bottom: 7px;
+}
+.kilos {
+    padding-top: 7px;
+    font-size: 16px;
+}
+input[type="number"] {
+    width: 40px;
+    margin-top: 5px;
+    padding: 3px;
+}
+.add-basket-logo {
+    width: 25px;
+    margin-top: 7px;
+    padding: 7px;
+}
+.add-basket-logo:hover {
+    cursor: pointer;
+}
+.item-added {
+    background-color: rgb(197, 206, 210);
+}
+/* Panier -------------------------------------------------------------------------*/
+.basket {
+    display: none;
+    padding-right: 25%;
+    padding-left: 25%;
+}
+.basket-style {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(197, 206, 210);
+    padding: 10px;
+}
+ol {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 28px;
+    list-style: disc;
+}
+.item-remover {
+    width: 15px;
+    margin-left: 10px;
+}
+.item-remover:hover {
+    cursor: pointer;
+}
+.total {
+    font-family: 'Letters for Learners';
+    font-size: 30px;
+    text-shadow: 2px 2px 2px silver;
+}
+.form-button, .basket button {
+    border: 1px solid black;
+    background-color: rgb(159, 167, 171);
+    font-family: 'Letters for Learners';
+    font-size: 25px;
+    text-shadow: 2px 2px 2px rgba(113, 113, 113, 0.5);
+}
+.form-button:hover, .basket button{
+    text-decoration: none;
+}
+/* Denières nouvelles des champs ---------------------------------------------------*/
+.field {
+    display: none;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.field p {
+    display: flex;
+    gap: 10px;
+    line-height: 1.6;
+}
+article {
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px gray;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgb(235, 235, 235);
+}
+.container-article::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+h3 {
+    font-family: 'Letters for Learners';
+    font-size: 35px;
+    text-shadow: 2px 2px 2px rgb(179, 178, 178);
+}
+.img-article {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    float: left;
+    shape-outside: margin-box;
+    margin: 0 20px 5px 0;
+}
+/* Retrouvez nous -----------------------------------------------------------------*/
+.findUs {
+    display: none;
+    text-align: center;
+    line-height: 35px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+.media {
+    text-decoration: none;
+    color: black;
+}
+.media:hover {
+    text-shadow: 1px 1px 2px gray;
+}
+strong {
+    font-family: 'Letters for Learners';
+    font-size: 30px;
+    text-shadow: 2px 2px 2px silver;
+}
+/* Contactez nous ---------------------------------------------------------------*/
+.contact {
+    display: none;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 400px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 40px;
+}
+form label {
+    font-family: 'Letters for Learners';
+    font-size: 30px;
+    text-shadow: 2px 2px 2px silver;
+}
+textarea {
+    height: 50px;
+}
+/* Footer ------------------------------------------------------------------------*/
+footer {
+    text-align: center;
+}
