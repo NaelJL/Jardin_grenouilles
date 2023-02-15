@@ -1,7 +1,7 @@
 // AFFICHER OU CACHER LES ELEMENTS DE LA BARRE NAV
 
 // stocker dans elements tous les éléments qui se modifieront
-let elements = document.querySelectorAll('.field, .findUs, .contact');
+let elements = document.querySelectorAll('.items, .field, .findUs, .contact');
 
 // éléments en display = none au (re)chargement de la page
 document.addEventListener("DOMContentLoaded", function(){
@@ -88,77 +88,79 @@ for (let key in vegetables) {
 }
 
 
+// GERER LES COMMANDES
 
-// AJOUTER LES LEGUMES AU PANIER
+// fonction pour changer la couleur de fond et le logo
+function changeAppearance (element) {
+    element.parentElement.classList.add('item-added');
 
-let addbasketButton = document.getElementsByClassName("add-basket-logo");
+    let addBasketLogo = document.querySelectorAll('.add-basket-logo');
+    for (let i = 0; i < addBasketLogo.length; i++) {
+        element.src = "images/shopping-basket-ok.png";
+    }
+}
 
-let basketName = [];
-let basketPrice = [];
+// fonction pour faire apparaître le panier
+function displayBasket () {
+    let basketBlock = document.querySelector('.basket');
+    basketBlock.style.display = "block";
+}
 
-// boucle for pour chaque bouton addBasket
-for (let i = 0; i < addbasketButton.length; i++) {
+// fonction pour ajouter les noms et les prix dans les tableaux
+let basket = [];
+function addToBasket (element) {
+    let item = {};
+    item.name = element.parentElement.getElementsByClassName("vegetable-name")[0].innerHTML;
+    item.price = parseFloat(element.parentElement.getElementsByClassName("vegetable-price")[0].innerHTML.split(" €")[0]);
     
-    // au clic sur un logo, les fonctions se déclenchent
-    addbasketButton[i].addEventListener("click", function() {
+    basket.push(item);
+}
 
-        // changer la couleur de fond
-        this.parentElement.classList.add('item-added');
+// fonction pour mettre à jour le total du panier
+function updateTotal (basketNumbers) {
+    let total = document.querySelector('.total');
+    totalSum = basketNumbers.reduce((acc, cur) => acc + cur, 0);
+    total.innerHTML = `Total : ${totalSum} €`;
+}
 
-        // changer l'image du logo
-        let addBasketLogo = document.querySelectorAll('.add-basket-logo');
-        for (let i = 0; i < addBasketLogo.length; i++) {
-            this.src = "images/shopping-basket-ok.png";
-        }
-    
-        // faire apparaître le panier
-        let basketBlock = document.querySelector('.basket');
-        basketBlock.style.display = "block";
+// fonction pour lister les légumes du panier
+function listInBasket (basket) {
+    let basketList = document.querySelector('.basket-list');
+    basketList.innerHTML = "";
 
-        // les noms et les prix sont stockés dans deux tableaux différents
-        let itemName = this.parentElement.getElementsByClassName("vegetable-name")[0].innerHTML;
-        basketName.push(itemName);
-        let itemPrice = this.parentElement.getElementsByClassName("vegetable-price")[0].innerHTML;
-        basketPrice.push(itemPrice);
-
-        // convertir en nombre les strings des prix
-        let basketNumbers = [];
-        basketPrice.forEach(function(item) {
-            let itemNumber = parseFloat(item.split(" €")[0]);
-            basketNumbers.push(itemNumber);
-        });
-
-        // Lister les items dans le panier
-        let basketList = document.querySelector('.basket-list');
-        basketList.innerHTML = "";
-
-        // boucle forEach pour ajouter les légumes récupérés dans 'items' à ajouter dans 'basket'
-        basketName.forEach(function(item) {
-
-            // en créant un point li
-            let itemElement = document.createElement("li");
-            itemElement.innerHTML = item;
-            basketList.appendChild(itemElement);
-
-            // ajouter le logo pour supprimer un item du panier
-            let itemRemover = document.createElement("img");
-            itemRemover.src = "images/remove.png";
-            itemRemover.classList.add('item-remover');
-            itemElement.appendChild(itemRemover);
-
-            // fonction pour supprimer un item du panier
-            itemRemover.addEventListener('click', function() {
-                let itemIndex = basketName.indexOf(item);
-                basketName.splice(itemIndex, 1);
-                basketPrice.splice(itemIndex, 1);
-                itemElement.remove();            
-            })
-
+    basketName.forEach(function(item) {
+        // créer des points li pour chaque légumes
+        let itemElement = document.createElement("li");
+        itemElement.innerHTML = `${item.name} : ${item.price} €`;
+        basketList.appendChild(itemElement);
+        // ajouter le logo pour supprimer un élément
+        let itemRemover = document.createElement("img");
+        itemRemover.src = "images/remove.png";
+        itemRemover.classList.add('item-remover');
+        itemElement.appendChild(itemRemover);
+        // fonction pour supprimer un item du panier
+        itemRemover.addEventListener('click', function(){
+            let itemIndex = basketName.indexOf(item);
+            basket.splice(itemIndex, 1);
+            itemElement.remove();
             // mettre à jour le total du prix
-            let total = document.querySelector('.total');
-            totalSum = basketNumbers.reduce((acc, cur) => acc + cur, 0);
-            total.innerHTML = `Total : ${totalSum} €`;
-            });
+            updateTotal (basketNumbers);
+        })
+    })
+}
 
-    });
+// fonction pour ajouter un légume au panier
+function addVegetable (element) {
+    changeAppearance(element);
+    displayBasket();
+    addToBasket(element);
+    updateTotal(basketNumbers);
+    listInBasket(basketName);
+}
+
+// boucle for pour chaque bouton addBasket : au clic sur un logo, les fonctions se déclenchent
+let addBasketButton = document.getElementsByClassName("add-basket-logo");
+
+for (let i = 0; i < addBasketButton.length; i++) {
+    addBasketButton[i].addEventListener('click', addVegetable);
 }

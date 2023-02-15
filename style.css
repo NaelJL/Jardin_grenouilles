@@ -96,6 +96,7 @@ button {
     background-color: rgba(255, 255, 255, 0);
     cursor: pointer;
     font-family: 'Roboto';
+    color: black;
 }
 button:hover {
     text-decoration: underline;
@@ -103,6 +104,7 @@ button:hover {
 .arrow {
     width: 12px;
 }
+
 /* À acheter en ce moment -----------------------------------------------------------*/
 section {
     margin-left: 10%;
@@ -111,7 +113,7 @@ section {
     background-color: rgba(255, 255, 255, 0.7);
 }
 .items {
-    display: block;
+    display: none;
 }
 .items-style {
     display: flex;
@@ -155,6 +157,7 @@ input[type="number"] {
 .item-added {
     background-color: rgb(197, 206, 210);
 }
+
 /* Panier -------------------------------------------------------------------------*/
 .basket {
     display: none;
@@ -169,13 +172,12 @@ input[type="number"] {
 }
 ol {
     padding-top: 8px;
-    padding-bottom: 8px;
     line-height: 28px;
-    list-style: disc;
+    list-style: none;
 }
 .item-remover {
     width: 15px;
-    margin-left: 10px;
+    margin-left: 8px;
 }
 .item-remover:hover {
     cursor: pointer;
@@ -191,10 +193,12 @@ ol {
     font-family: 'Letters for Learners';
     font-size: 25px;
     text-shadow: 2px 2px 2px rgba(113, 113, 113, 0.5);
+    color: black;
 }
 .form-button:hover, .basket button{
     text-decoration: none;
 }
+
 /* Denières nouvelles des champs ---------------------------------------------------*/
 .field {
     display: none;
@@ -210,13 +214,16 @@ article {
     border-radius: 5px;
     box-shadow: 2px 2px 5px gray;
     margin-top: 20px;
-    padding: 20px;
+    padding: 20px 30px 50px 30px;
     background-color: rgb(235, 235, 235);
 }
 .container-article::after {
     content: "";
     display: block;
     clear: both;
+}
+.container-article {
+    line-height: 1.4;
 }
 h3 {
     font-family: 'Letters for Learners';
@@ -232,6 +239,7 @@ h3 {
     shape-outside: margin-box;
     margin: 0 20px 5px 0;
 }
+
 /* Retrouvez nous -----------------------------------------------------------------*/
 .findUs {
     display: none;
@@ -251,6 +259,7 @@ strong {
     font-size: 30px;
     text-shadow: 2px 2px 2px silver;
 }
+
 /* Contactez nous ---------------------------------------------------------------*/
 .contact {
     display: none;
@@ -273,7 +282,49 @@ form label {
 textarea {
     height: 50px;
 }
+
 /* Footer ------------------------------------------------------------------------*/
 footer {
     text-align: center;
+}
+
+/* Responsive ---------------------------------------------------------------------*/
+@media only screen and (max-width: 450px) {
+
+    .container-slider {
+        height: 180px;
+    }
+    .header-image {
+        width: 400px;
+    }
+    h1 {
+        font-size: 35px;
+    }
+    h2 {
+        font-size: 25px;
+    }
+    button {
+        font-size: 15px;
+    }
+    .img-article {
+        width: 180px;
+        height: 180px;
+        margin: 0px 0px 10px 0px;
+        float: none;
+    }
+    h3, strong, form label, .total, .basket button {
+        font-size: 25px;
+    }
+    .field p {
+       flex-direction: column;
+    }
+    .container-article, .findUs p {
+        font-size: 13px;
+    }
+    form {
+        width: 250px;
+    }
+    footer {
+        font-size: 12px;
+    }
 }
