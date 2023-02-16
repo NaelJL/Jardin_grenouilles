@@ -115,6 +115,10 @@ section {
 .items {
     display: none;
 }
+.items p {
+    text-align: center;
+    padding-bottom: 15px;
+}
 .items-style {
     display: flex;
     flex-wrap: wrap;
@@ -137,15 +141,6 @@ section {
     font-size: 18px;
     padding-bottom: 7px;
 }
-.kilos {
-    padding-top: 7px;
-    font-size: 16px;
-}
-input[type="number"] {
-    width: 40px;
-    margin-top: 5px;
-    padding: 3px;
-}
 .add-basket-logo {
     width: 25px;
     margin-top: 7px;
@@ -153,9 +148,6 @@ input[type="number"] {
 }
 .add-basket-logo:hover {
     cursor: pointer;
-}
-.item-added {
-    background-color: rgb(197, 206, 210);
 }
 
 /* Panier -------------------------------------------------------------------------*/

@@ -97,14 +97,17 @@ let basket = [];
 
 function addVegetable () {
 
-        // changer la couleur de fond
-        this.parentElement.classList.add('item-added');
-
         // changer l'image du logo
         let addBasketLogo = document.querySelectorAll('.add-basket-logo');
         for (let i = 0; i < addBasketLogo.length; i++) {
             this.src = "images/shopping-basket-ok.png";
         }
+
+        // remettre l'apparence initiale au bout de 2 secondes
+        let clickedImage = this;
+        setTimeout(function() {
+            clickedImage.src = "images/shopping-basket.png";
+        }, 1000);
     
         // faire apparaître le panier
         let basketBlock = document.querySelector('.basket');
@@ -147,11 +150,13 @@ function addVegetable () {
             itemRemover.addEventListener('click', function() {
                 let itemIndex = basket.indexOf(item);
                 basket.splice(itemIndex, 1);
+
                 itemElement.remove();   
+
                 totalSum = basket.reduce((acc, current) => {
                     return acc + current.numberPrice
                 }, 0);            
-                total.innerHTML = `Total : ${totalSum} €`;         
+                total.innerHTML = `Total : ${totalSum} €`;  
             })
 
         });
