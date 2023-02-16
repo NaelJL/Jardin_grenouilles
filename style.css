@@ -170,10 +170,10 @@ input[type="number"] {
     background-color: rgb(197, 206, 210);
     padding: 10px;
 }
-ol {
+.basket-list {
     padding-top: 8px;
     line-height: 28px;
-    list-style: none;
+    list-style-type: none;
 }
 .item-remover {
     width: 15px;
